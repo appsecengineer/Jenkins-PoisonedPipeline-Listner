@@ -23,12 +23,12 @@ def data_listner():
     return render_template('listner.html', data=json_formatted_str)
 
 @app.route('/filewebhook', methods=['PUT'])
-def upload():
+def file_upload():
     file_data = request.data
     return 'OK'
 
 @app.route('/filelistner', methods=['GET'])
-def data_listner():
+def file_listner():
     return render_template('filelistner.html', data=file_data)
 
 
