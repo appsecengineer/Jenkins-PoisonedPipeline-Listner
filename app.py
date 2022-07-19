@@ -4,6 +4,7 @@ import json
 
 app = Flask(__name__)
 data =[]
+file_data = ""
 
 @app.route('/webhook', methods=['POST'])
 def index():
@@ -20,6 +21,15 @@ def data_listner():
         data.append({"data":"NO data found"})
     json_formatted_str = json.loads(json.dumps(data[-1], indent=4))
     return render_template('listner.html', data=json_formatted_str)
+
+@app.route('/filewebhook', methods=['PUT'])
+def upload():
+    file_data = request.data
+    return 'OK'
+
+@app.route('/filelistner', methods=['GET'])
+def data_listner():
+    return render_template('filelistner.html', data=file_data)
 
 
 if __name__ == '__main__':
